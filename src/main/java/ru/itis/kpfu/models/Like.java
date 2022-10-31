@@ -7,9 +7,8 @@ import lombok.*;
 @Builder
 @Data
 //@ToString
-public class Comment {
+public class Like {
     private Long id;
-    private String text;
     private Long userId;
     private Long postId;
 }

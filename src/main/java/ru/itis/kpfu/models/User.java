@@ -6,7 +6,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Data
-@ToString
+//@ToString
 public class User {
     private Long id;
     private String firstName;

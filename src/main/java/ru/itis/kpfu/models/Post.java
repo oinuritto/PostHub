@@ -8,11 +8,12 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Data
-@ToString
+//@ToString
 public class Post {
     private Long id;
     private String text;
     private Long imgId;
     private Long userId;
     private List<Comment> comments;
+    private List<Like> likes;
 }

@@ -14,13 +14,14 @@
 <body class="bg-light">
 <nav class="navbar sticky-top navbar-expand-md navbar-light p-3" style="background-color: #f1f1f1;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#home" id="home">PostHub</a>
+        <a class="navbar-brand" href="#">PostHub</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <%--            TODO: сделать поиск --%>
             <form class="d-flex">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -28,7 +29,7 @@
 
             <ul class="navbar-nav ms-auto ">
                 <li class="nav-item">
-                    <a class="nav-link mx-2 active" aria-current="page" href="#home">Home</a>
+                    <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
                 </li>
 
                 <%-- Если авторизован               --%>
@@ -41,9 +42,9 @@
                             Account
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkAuthorized">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">New post</a></li>
-                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                            <li><a class="dropdown-item" href="<c:url value="/profile"/>">Profile</a></li>
+                            <li><a class="dropdown-item" href="<c:url value="/newpost"/>">New post</a></li>
+                            <li><a class="dropdown-item" href="<c:url value="/logout"/>">Log out</a></li>
                         </ul>
                     </li>
                 </c:if>
@@ -59,8 +60,8 @@
                             Account
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkNotAuthorized">
-                            <li><a class="dropdown-item" href="#">Log in</a></li>
-                            <li><a class="dropdown-item" href="#">Registration</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#authModal">Log in</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Registration</a></li>
                         </ul>
                     </li>
                 </c:if>
@@ -69,3 +70,4 @@
         </div>
     </div>
 </nav>
+<br>
