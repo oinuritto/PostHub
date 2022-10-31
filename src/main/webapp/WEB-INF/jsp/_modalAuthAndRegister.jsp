@@ -113,7 +113,7 @@
                         <div class="form-check d-flex justify-content-center">
 
                             <input id="policy-label" class="form-check-input" type="checkbox" name="policy"
-                                   value=\"agreed\">"
+                                   value="agreed">
                             <label class="form-check-label" for="policy-label">
                                 I do accept the Policy Agreement
                             </label>

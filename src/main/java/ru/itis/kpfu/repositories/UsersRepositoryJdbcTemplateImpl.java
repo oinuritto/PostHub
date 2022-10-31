@@ -67,9 +67,12 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
         SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
 
-        Long id = insert.withTableName("users")
-                .usingGeneratedKeyColumns("id")
-                .executeAndReturnKey(new MapSqlParameterSource(paramsAsMap)).longValue();
+        Long id = Long.parseLong(insert.withTableName("users")
+                .usingGeneratedKeyColumns("id", "role")
+                .executeAndReturnKeyHolder(new MapSqlParameterSource(paramsAsMap))
+                .getKeys()
+                .get("id")
+                .toString());
 
 
         user.setId(id);

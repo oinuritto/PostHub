@@ -47,7 +47,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>5.3.20</version>
+      <version>5.3.23</version>
     </dependency>
 
     <!--   for hashes (md5 for password)   -->
