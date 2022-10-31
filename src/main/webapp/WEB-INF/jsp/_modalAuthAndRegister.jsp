@@ -12,8 +12,8 @@
                     <h4 class="mb-4 pb-2 pb-md-0 mb-md-5">${message}</h4>
                 </c:if>
                 <form action="<c:url value="/auth"/>" method="post">
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 mb-3">
 
                             <div class="form-outline">
                                 <input id="username-label-auth" class="form-control form-control-md" type="text"
@@ -24,8 +24,8 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 mb-3">
 
                             <div class="form-outline">
                                 <input id="password-label-auth" class="form-control form-control-md" type="password"
@@ -36,7 +36,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-4 pt-2">
+                    <div class="mt-3 pt-2 d-flex justify-content-center">
                         <input class="btn btn-primary btn-md" type="submit" value="Submit"/>
                     </div>
 
@@ -60,8 +60,8 @@
                     <h4 class="mb-4 pb-2 pb-md-0 mb-md-5">${message}</h4>
                 </c:if>
                 <form action="<c:url value="/register"/>" method="post">
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 mb-3">
 
                             <div class="form-outline">
                                 <input id="firstName-label" class="form-control form-control-md" type="text"
@@ -73,8 +73,8 @@
 
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 mb-3">
 
                             <div class="form-outline">
                                 <input id="lastName-label" class="form-control form-control-md" type="text"
@@ -85,8 +85,8 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 mb-3">
 
                             <div class="form-outline">
                                 <input id="username-label" class="form-control form-control-md" type="text"
@@ -97,8 +97,8 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 mb-3">
 
                             <div class="form-outline">
                                 <input id="password-label" class="form-control form-control-md" type="password"
@@ -109,8 +109,8 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="form-check">
+                    <div class="row justify-content-center">
+                        <div class="form-check d-flex justify-content-center">
 
                             <input id="policy-label" class="form-check-input" type="checkbox" name="policy"
                                    value=\"agreed\">"
@@ -121,7 +121,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-4 pt-2">
+                    <div class="mt-4 pt-2 d-flex justify-content-center">
                         <input class="btn btn-primary btn-md" type="submit" value="Submit"/>
                     </div>
 

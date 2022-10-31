@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/jsp/_header.jsp" %>
-<div class="container" style="min-height: 62vh;">
+<div class="container" style="min-height: 71.5vh;">
     <%@include file="/WEB-INF/jsp/_modalAuthAndRegister.jsp"%>
 
     <%--    one card--%>
