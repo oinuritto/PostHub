@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/jsp/_header.jsp"%>
-<h2>SOme</h2>
+<div class="container bg-white">
+    <h2>gg</h2>
+</div>
 <%@include file="/WEB-INF/jsp/_footer.jsp"%>
