@@ -39,6 +39,17 @@
       <version>42.5.0</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.24</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>5.3.20</version>
+    </dependency>
+
     <!--   for hashes (md5 for password)   -->
     <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
     <dependency>
