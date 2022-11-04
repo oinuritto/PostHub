@@ -98,7 +98,7 @@
                     <div class="col-md-4 mb-3">
                         <div class="mt-4 pt-2">
                             <button class="btn btn-primary btn-lg" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">Delete account
+                                    data-bs-target="#deleteAccountModal">Delete account
                             </button>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                 <form action="${pageContext.request.contextPath}/profile/delete" method="post">
                     <input type="hidden" name="isDeleteAccepted" value="true" />
-                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <input type="submit" class="btn btn-primary" value="Yes"/>
                 </form>
             </div>
         </div>
