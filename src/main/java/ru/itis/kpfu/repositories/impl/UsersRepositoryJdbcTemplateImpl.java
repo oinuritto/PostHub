@@ -29,6 +29,9 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     private static final String SQL_SELECT_BY_USERNAME_PASSWORD = "select * from users where username = ? and password = ?";
 
     //language=SQL
+    private static final String SQL_SELECT_ALL_LIKE_USERNAME = "select * from users where username ilike '%' || ? || '%';";
+
+    //language=SQL
     private static final String SQL_UPDATE_USER = "update users set first_name = ?, last_name = ?, username = ?, " +
             "password = ? where id = ?";
 
@@ -109,6 +112,11 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public List<User> findAllLikeUsername(String username) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_LIKE_USERNAME, userMapper, username);
     }
 
 

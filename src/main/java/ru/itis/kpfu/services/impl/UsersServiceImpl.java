@@ -57,6 +57,11 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public List<User> getAllUsersLikeUsername(String username) {
+        return usersRepository.findAllLikeUsername(username);
+    }
+
+    @Override
     public void deleteUser(User user) {
         if (user.getId() != null) {
             usersRepository.delete(user.getId());

@@ -1,5 +1,6 @@
 package ru.itis.kpfu.services;
 
+import ru.itis.kpfu.models.Post;
 import ru.itis.kpfu.models.User;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public interface UsersService {
     User getRegisteredUserByUsername(String username);
 
     List<User> getAllUsers();
+
+    List<User> getAllUsersLikeUsername(String username);
 
     void deleteUser(User user);
 }

@@ -18,5 +18,7 @@ public interface UsersRepository {
 
     Optional<User> findUserByUsernamePassword(String username, String password);
 
+    List<User> findAllLikeUsername(String username);
+
     void delete(Long id);
 }

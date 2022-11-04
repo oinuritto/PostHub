@@ -21,6 +21,7 @@ public class PostsRepositoryJdbcTemplateImpl implements PostsRepository {
     //language=SQL
     private static final String SQL_SELECT_BY_ID = "select * from posts where id = ?;";
 
+    //language=SQL
     private static final String SQL_SELECT_ALL_LIKE_TITLE = "select * from posts where title ilike '%' || ? || '%';";
 
     //language
