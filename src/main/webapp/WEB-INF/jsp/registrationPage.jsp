@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/jsp/_header.jsp" %>
-<div class="container">
+
     <c:if test="${not empty message}">
         <h4 class="mb-4 pb-2 pb-md-0 mb-md-5">${message}</h4>
     </c:if>
@@ -75,5 +75,5 @@
         </div>
 
     </form>
-</div>
+
 <%@include file="/WEB-INF/jsp/_footer.jsp" %>

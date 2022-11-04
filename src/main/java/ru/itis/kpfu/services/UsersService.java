@@ -14,4 +14,6 @@ public interface UsersService {
     User getRegisteredUserByUsername(String username);
 
     List<User> getAllUsers();
+
+    void deleteUser(User user);
 }

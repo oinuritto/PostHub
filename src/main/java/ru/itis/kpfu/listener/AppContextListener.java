@@ -2,10 +2,14 @@ package ru.itis.kpfu.listener;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import ru.itis.kpfu.repositories.UsersRepository;
-import ru.itis.kpfu.repositories.UsersRepositoryJdbcTemplateImpl;
+import ru.itis.kpfu.repositories.*;
+import ru.itis.kpfu.repositories.impl.ImgInfoRepositoryJdbcTemplateImpl;
+import ru.itis.kpfu.repositories.impl.PostsRepositoryJdbcTemplateImpl;
+import ru.itis.kpfu.repositories.impl.UsersRepositoryJdbcTemplateImpl;
+import ru.itis.kpfu.services.FilesService;
+import ru.itis.kpfu.services.impl.FilesServiceImpl;
 import ru.itis.kpfu.services.UsersService;
-import ru.itis.kpfu.services.UsersServiceImpl;
+import ru.itis.kpfu.services.impl.UsersServiceImpl;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -16,6 +20,7 @@ import java.util.Properties;
 @WebListener
 public class AppContextListener implements ServletContextListener {
     private HikariDataSource hikariDataSource;
+    private final String storagePath = "C:\\Users\\oinuritto\\IdeaProjects\\PostHub\\files\\";
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -37,11 +42,21 @@ public class AppContextListener implements ServletContextListener {
 
         hikariDataSource = new HikariDataSource(hikariConfig);
 
+        // users
         UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(hikariDataSource);
         UsersService usersService = new UsersServiceImpl(usersRepository);
-
         sce.getServletContext().setAttribute("usersService", usersService);
 //        sce.getServletContext().setAttribute("usersRepository", usersRepository);
+
+        // posts
+        PostsRepository postsRepository = new PostsRepositoryJdbcTemplateImpl(hikariDataSource);
+        sce.getServletContext().setAttribute("postsRepository", postsRepository);
+
+        //files
+        ImgInfoRepository imgInfoRepository = new ImgInfoRepositoryJdbcTemplateImpl(hikariDataSource);
+        FilesService filesService = new FilesServiceImpl(storagePath, imgInfoRepository);
+        sce.getServletContext().setAttribute("filesService", filesService);
+//        sce.getServletContext().setAttribute("filesPath", storagePath);
     }
 
     @Override

@@ -44,8 +44,6 @@ public class AuthServlet extends HttpServlet {
 
             resp.sendRedirect(req.getContextPath() + "/profile");
         } catch (IllegalArgumentException ex) {
-//            req.setAttribute("message", "Wrong email or password.");
-//            this.doGet(req, resp);
             resp.sendRedirect(req.getContextPath() + "/auth?message=" + ex.getMessage());
         }
     }

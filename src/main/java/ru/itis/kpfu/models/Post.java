@@ -8,9 +8,9 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Data
-//@ToString
 public class Post {
     private Long id;
+    private String title;
     private String text;
     private Long imgId;
     private Long userId;

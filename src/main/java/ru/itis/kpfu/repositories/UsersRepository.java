@@ -18,5 +18,5 @@ public interface UsersRepository {
 
     Optional<User> findUserByUsernamePassword(String username, String password);
 
-//    void delete(Long id);
+    void delete(Long id);
 }

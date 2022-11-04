@@ -14,7 +14,7 @@
 <body class="bg-light">
 <nav class="navbar sticky-top navbar-expand-md navbar-light p-3" style="background-color: #f1f1f1;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">PostHub</a>
+        <a class="navbar-brand" href="<c:url value="/"/>">PostHub</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -29,7 +29,7 @@
 
             <ul class="navbar-nav ms-auto ">
                 <li class="nav-item">
-                    <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link mx-2 active" aria-current="page" href="<c:url value="/"/>">Home</a>
                 </li>
 
                 <%-- Если авторизован               --%>
@@ -39,7 +39,7 @@
                            role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-people-fill"></i>
-                            Account
+                            ${user.username}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkAuthorized">
                             <li><a class="dropdown-item" href="<c:url value="/profile"/>">Profile</a></li>
@@ -70,4 +70,6 @@
         </div>
     </div>
 </nav>
+<%@include file="/WEB-INF/jsp/_modalAuthAndRegister.jsp"%>
 <br>
+<div class="container" style="min-height: 71.5vh;">
