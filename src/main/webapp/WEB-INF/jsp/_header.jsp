@@ -22,8 +22,8 @@
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <%--            TODO: сделать поиск --%>
-            <form class="d-flex">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" method="get" action="${pageContext.request.contextPath}">
+                <input id="search-input" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
 

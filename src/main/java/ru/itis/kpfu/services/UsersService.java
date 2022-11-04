@@ -11,6 +11,10 @@ public interface UsersService {
 
     boolean isRegisteredUser(User user);
 
+    void update(User user, boolean mustHashPassword);
+
+    void update(User user);
+
     User getRegisteredUserByUsername(String username);
 
     List<User> getAllUsers();

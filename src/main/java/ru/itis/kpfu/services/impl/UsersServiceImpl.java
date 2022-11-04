@@ -33,6 +33,19 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public void update(User user, boolean mustHashPassword) {
+        if (mustHashPassword) {
+            UserPasswordHasher.HashUserPassword(user);
+        }
+        usersRepository.update(user);
+    }
+
+    @Override
+    public void update(User user) {
+        usersRepository.update(user);
+    }
+
+    @Override
     public User getRegisteredUserByUsername(String username) {
         return usersRepository.findUserByUsername(username)
                 .orElseThrow(() -> new IllegalArgumentException("This username is already registered"));
