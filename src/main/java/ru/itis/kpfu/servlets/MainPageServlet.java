@@ -24,9 +24,15 @@ public class MainPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Post> posts = postsService.getAllPosts();
-
-        req.setAttribute("posts", posts);
-        getServletContext().getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
+        if (req.getParameter("query") == null || req.getParameter("query").equals("")) {
+            List<Post> posts = postsService.getAllPosts();
+            req.setAttribute("posts", posts);
+            getServletContext().getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
+        } else {
+            String title = req.getParameter("query");
+            List<Post> posts = postsService.getAllPostsLikeTitle(title);
+            req.setAttribute("posts", posts);
+            getServletContext().getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
+        }
     }
 }
