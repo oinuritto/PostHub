@@ -2,6 +2,7 @@ package ru.itis.kpfu.servlets;
 
 import ru.itis.kpfu.models.Post;
 import ru.itis.kpfu.repositories.PostsRepository;
+import ru.itis.kpfu.services.PostsService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,18 +14,18 @@ import java.util.List;
 
 @WebServlet("/")
 public class MainPageServlet extends HttpServlet {
-    private PostsRepository postsRepository;
+    private PostsService postsService;
 
     @Override
     public void init() throws ServletException {
-        // init postsRepository
-        this.postsRepository = (PostsRepository) getServletContext().getAttribute("postsRepository");
+        // init postsService
+        this.postsService = (PostsService) getServletContext().getAttribute("postsService");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Post> posts = postsRepository.findAll();
-//        System.out.println(posts.get(0));
+        List<Post> posts = postsService.getAllPosts();
+
         req.setAttribute("posts", posts);
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
     }

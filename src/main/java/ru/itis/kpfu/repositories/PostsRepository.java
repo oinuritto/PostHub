@@ -12,7 +12,7 @@ public interface PostsRepository {
 
     Optional<Post> findById(Long id);
 
-    List<Post> findAllByTitle(String title);
+    List<Post> findAllLikeTitle(String title);
 
 //    void update(Post post);
 

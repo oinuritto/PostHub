@@ -44,8 +44,6 @@ public class RegistrationServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/auth?message=Successful registration");
         } catch (IllegalArgumentException ex) {
             resp.sendRedirect(req.getContextPath() + "/register?message=" + ex.getMessage());
-//            req.setAttribute("message", ex.getMessage());
-//            this.doGet(req, resp);
         }
     }
 

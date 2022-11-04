@@ -24,7 +24,7 @@ public class UsersServiceImpl implements UsersService {
     public User getRegisteredUserByUsernamePassword(String username, String password) throws IllegalArgumentException{
         password = UserPasswordHasher.getHashedPassword(password);
         return usersRepository.findUserByUsernamePassword(username, password)
-                .orElseThrow(() -> new IllegalArgumentException("Wrong email or password"));
+                .orElseThrow(() -> new IllegalArgumentException("Wrong username or password"));
     }
 
     @Override
@@ -35,7 +35,7 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public User getRegisteredUserByUsername(String username) {
         return usersRepository.findUserByUsername(username)
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException("This username is already registered"));
     }
 
     @Override

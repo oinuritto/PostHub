@@ -21,7 +21,7 @@ public class PostsRepositoryJdbcTemplateImpl implements PostsRepository {
     //language=SQL
     private static final String SQL_SELECT_BY_ID = "select * from posts where id = ?;";
 
-    private static final String SQL_SELECT_ALL_BY_TITLE = "select * from posts where title ilike '%' | ? | '%';";
+    private static final String SQL_SELECT_ALL_LIKE_TITLE = "select * from posts where title ilike '%' | ? | '%';";
 
     //language
     private static final RowMapper<Post> postMapper = (row, rowNumber) -> Post.builder()
@@ -72,7 +72,7 @@ public class PostsRepositoryJdbcTemplateImpl implements PostsRepository {
     }
 
     @Override
-    public List<Post> findAllByTitle(String title) {
-        return jdbcTemplate.query(SQL_SELECT_ALL_BY_TITLE, postMapper, title);
+    public List<Post> findAllLikeTitle(String title) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_LIKE_TITLE, postMapper, title);
     }
 }

@@ -7,8 +7,10 @@ import ru.itis.kpfu.repositories.impl.ImgInfoRepositoryJdbcTemplateImpl;
 import ru.itis.kpfu.repositories.impl.PostsRepositoryJdbcTemplateImpl;
 import ru.itis.kpfu.repositories.impl.UsersRepositoryJdbcTemplateImpl;
 import ru.itis.kpfu.services.FilesService;
+import ru.itis.kpfu.services.PostsService;
 import ru.itis.kpfu.services.impl.FilesServiceImpl;
 import ru.itis.kpfu.services.UsersService;
+import ru.itis.kpfu.services.impl.PostsServiceImpl;
 import ru.itis.kpfu.services.impl.UsersServiceImpl;
 
 import javax.servlet.ServletContextEvent;
@@ -50,7 +52,9 @@ public class AppContextListener implements ServletContextListener {
 
         // posts
         PostsRepository postsRepository = new PostsRepositoryJdbcTemplateImpl(hikariDataSource);
-        sce.getServletContext().setAttribute("postsRepository", postsRepository);
+//        sce.getServletContext().setAttribute("postsRepository", postsRepository);
+        PostsService postsService = new PostsServiceImpl(postsRepository);
+        sce.getServletContext().setAttribute("postsService", postsService);
 
         //files
         ImgInfoRepository imgInfoRepository = new ImgInfoRepositoryJdbcTemplateImpl(hikariDataSource);
