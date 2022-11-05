@@ -30,5 +30,6 @@ effective-settings.xml
 *.lck
 */dependency-reduced-pom.xml
 
+files/*
 files
 

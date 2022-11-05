@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/WEB-INF/jsp/_header.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
+<t:mainLayout title="Profile">
     <div class="row justify-content-center align-items-center">
         <div class="col-12 col-lg-9 col-xl-7">
             <div class="card" style="border-radius: 15px;">
@@ -75,5 +77,4 @@
             </div>
         </div>
     </div>
-
-<%@include file="/WEB-INF/jsp/_footer.jsp" %>
+</t:mainLayout>

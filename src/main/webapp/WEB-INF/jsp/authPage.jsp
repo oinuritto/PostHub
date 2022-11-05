@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/WEB-INF/jsp/_header.jsp"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
+<t:mainLayout title="Auth">
     <c:if test="${not empty message}">
         <h4 class="mb-4 pb-2 pb-md-0 mb-md-5">${message}</h4>
     </c:if>
@@ -37,5 +39,4 @@
         </div>
 
     </form>
-
-<%@include file="/WEB-INF/jsp/_footer.jsp"%>
+</t:mainLayout>
