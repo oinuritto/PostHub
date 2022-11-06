@@ -59,8 +59,8 @@ public class RegistrationServlet extends HttpServlet {
                 .password(req.getParameter("password"))
                 .build();
 
-        // throws IllegalArgumentException if user data is invalid
-        userValidator.validateUser(user);
+//        // throws IllegalArgumentException if user data is invalid
+//        userValidator.validateUser(user);
 
         // if username is registered (saved at database) - throw IllegalArgumentException
         if (usersService.isRegisteredUser(user)) {

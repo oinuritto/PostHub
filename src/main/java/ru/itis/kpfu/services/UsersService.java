@@ -18,6 +18,8 @@ public interface UsersService {
 
     User getRegisteredUserByUsername(String username);
 
+    User getRegisteredUserById(Long id);
+
     List<User> getAllUsers();
 
     List<User> getAllUsersLikeUsername(String username);

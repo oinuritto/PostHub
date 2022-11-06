@@ -36,7 +36,13 @@ public class EditProfileServlet extends HttpServlet {
         }
         User user = (User) req.getSession().getAttribute("user");
 
-        editUserProfile(req, resp, user);
+        try {
+            editUserProfile(req, resp, user);
+        } catch (IllegalArgumentException ex) {
+            req.getSession().setAttribute("user", usersService.getRegisteredUserById(user.getId()));
+            resp.sendRedirect(req.getContextPath() + "/profile/editProfile?message=" + ex.getMessage());
+            ex.printStackTrace();
+        }
     }
 
 

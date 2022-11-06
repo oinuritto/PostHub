@@ -40,7 +40,15 @@ public class UserEditByAdminServlet extends HttpServlet {
             return;
         }
 
-        editUserProfile(req, resp, editingUser);
+//        editUserProfile(req, resp, editingUser);
+        try {
+            editUserProfile(req, resp, editingUser);
+        } catch (IllegalArgumentException ex) {
+            editingUser = usersService.getRegisteredUserById(editingUser.getId());
+            resp.sendRedirect(req.getContextPath() + "/adminPanel?username=" + editingUser.getUsername() +
+                            "&message=" + ex.getMessage());
+            ex.printStackTrace();
+        }
     }
 
 
