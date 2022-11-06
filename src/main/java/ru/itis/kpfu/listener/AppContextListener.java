@@ -4,12 +4,12 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import ru.itis.kpfu.repositories.*;
 import ru.itis.kpfu.repositories.impl.ImgInfoRepositoryJdbcTemplateImpl;
+import ru.itis.kpfu.repositories.impl.LikesRepositoryJdbcTemplateImpl;
 import ru.itis.kpfu.repositories.impl.PostsRepositoryJdbcTemplateImpl;
 import ru.itis.kpfu.repositories.impl.UsersRepositoryJdbcTemplateImpl;
-import ru.itis.kpfu.services.FilesService;
-import ru.itis.kpfu.services.PostsService;
+import ru.itis.kpfu.services.*;
 import ru.itis.kpfu.services.impl.FilesServiceImpl;
-import ru.itis.kpfu.services.UsersService;
+import ru.itis.kpfu.services.impl.LikesServiceImpl;
 import ru.itis.kpfu.services.impl.PostsServiceImpl;
 import ru.itis.kpfu.services.impl.UsersServiceImpl;
 
@@ -56,11 +56,16 @@ public class AppContextListener implements ServletContextListener {
         PostsService postsService = new PostsServiceImpl(postsRepository);
         sce.getServletContext().setAttribute("postsService", postsService);
 
-        //files
+        // files
         ImgInfoRepository imgInfoRepository = new ImgInfoRepositoryJdbcTemplateImpl(hikariDataSource);
         FilesService filesService = new FilesServiceImpl(storagePath, imgInfoRepository);
         sce.getServletContext().setAttribute("filesService", filesService);
 //        sce.getServletContext().setAttribute("filesPath", storagePath);
+
+        // likes
+        LikesRepository likesRepository = new LikesRepositoryJdbcTemplateImpl(hikariDataSource);
+        LikesService likesService = new LikesServiceImpl(likesRepository);
+        sce.getServletContext().setAttribute("likesService", likesService);
     }
 
     @Override

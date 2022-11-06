@@ -1,6 +1,5 @@
 package ru.itis.kpfu.services;
 
-import ru.itis.kpfu.models.Post;
 import ru.itis.kpfu.models.User;
 
 import java.util.List;

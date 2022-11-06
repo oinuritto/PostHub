@@ -6,9 +6,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Data
-//@ToString
 public class Like {
-    private Long id;
     private Long userId;
     private Long postId;
 }

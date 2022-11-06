@@ -12,7 +12,6 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 public class FilesServiceImpl implements FilesService {
-//    private String storagePath = "C:\\Users\\oinuritto\\IdeaProjects\\PostHub\\files\\";
     private final String storagePath;
     private final ImgInfoRepository imgInfoRepository;
 
