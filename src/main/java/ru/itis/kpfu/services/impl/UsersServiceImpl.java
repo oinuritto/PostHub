@@ -48,7 +48,7 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public User getRegisteredUserByUsername(String username) {
         return usersRepository.findUserByUsername(username)
-                .orElseThrow(() -> new IllegalArgumentException("This username is already registered"));
+                .orElseThrow(() -> new IllegalArgumentException("This username doesn't exist"));
     }
 
     @Override

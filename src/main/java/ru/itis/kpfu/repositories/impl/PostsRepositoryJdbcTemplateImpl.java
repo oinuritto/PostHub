@@ -19,6 +19,9 @@ public class PostsRepositoryJdbcTemplateImpl implements PostsRepository {
     private static final String SQL_SELECT_ALL_POSTS = "select * from posts;";
 
     //language=SQL
+    private static final String SQL_SELECT_ALL_BY_OFFSET_AND_LIMIT = "select * from posts offset ? limit ?;";
+
+    //language=SQL
     private static final String SQL_SELECT_BY_ID = "select * from posts where id = ?;";
 
     //language=SQL
@@ -46,12 +49,35 @@ public class PostsRepositoryJdbcTemplateImpl implements PostsRepository {
     }
 
     @Override
-    public void save(Post post) {
+    public List<Post> findAllByOffsetAndLimit(int offset, int limit) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_BY_OFFSET_AND_LIMIT, postMapper, offset, limit);
+    }
+
+    @Override
+    public void saveWithImg(Post post) {
         Map<String, Object> paramsAsMap = new HashMap<>();
 
         paramsAsMap.put("title", post.getTitle());
         paramsAsMap.put("post_text", post.getText());
         paramsAsMap.put("img_id", post.getImgId());
+        paramsAsMap.put("user_id", post.getUserId());
+
+        SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
+
+        Long id = insert.withTableName("posts")
+                .usingGeneratedKeyColumns("id")
+                .executeAndReturnKey(new MapSqlParameterSource(paramsAsMap)).longValue();
+
+        post.setId(id);
+    }
+
+    @Override
+    public void saveWithoutImg(Post post) {
+        Map<String, Object> paramsAsMap = new HashMap<>();
+
+        paramsAsMap.put("title", post.getTitle());
+        paramsAsMap.put("post_text", post.getText());
+        paramsAsMap.put("img_id", null);
         paramsAsMap.put("user_id", post.getUserId());
 
         SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);

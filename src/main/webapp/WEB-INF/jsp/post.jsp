@@ -5,7 +5,7 @@
 <t:mainLayout title="${post.title}">
     <%--    one card--%>
     <div class="card m-auto">
-        <c:if test="${not empty post.imgId}">
+        <c:if test="${not empty post.imgId && post.imgId != 0}">
             <img src="${pageContext.request.contextPath}/images?id=${post.imgId}"
                  class="card-img-top" alt="${post.title}">
         </c:if>

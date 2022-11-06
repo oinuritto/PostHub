@@ -1,4 +1,4 @@
-package ru.itis.kpfu.servlets;
+package ru.itis.kpfu.servlets.userServlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.itis.kpfu.models.User;

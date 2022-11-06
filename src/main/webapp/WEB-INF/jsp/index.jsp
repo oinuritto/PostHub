@@ -7,7 +7,7 @@
 
         <%--    one card--%>
         <div class="card m-auto" style="width: 30rem;">
-            <c:if test="${not empty post.imgId}">
+            <c:if test="${not empty post.imgId && post.imgId != 0}">
                 <img src="${pageContext.request.contextPath}/images?id=${post.imgId}"
                      class="card-img-top" alt="${post.title}">
             </c:if>
@@ -24,16 +24,28 @@
     <%-- pages choose   --%>
     <nav aria-label="..." class="d-flex justify-content-center align-self-end">
         <ul class="pagination">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            <li class="page-item <c:if test="${page == 1}">disabled</c:if>">
+                <a class="page-link" href="<c:url value="/?page=${page - 1}"/>" tabindex="-1">
+                    Previous</a>
             </li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <c:if test="${page != 1}">
+                <li class="page-item">
+                    <a class="page-link" href="<c:url value="/?page=1"/>">1</a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">
+                        ...</a>
+                </li>
+            </c:if>
+            <li class="page-item active">
+                <a class="page-link" href="<c:url value="/?page=${page}"/>">${page}</a>
+            </li>
             <li class="page-item" aria-current="page">
-                <a class="page-link" href="#">2</a>
+                <a class="page-link" href="<c:url value="/?page=${page+1}"/>">${page+1}</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="<c:url value="/?page=${page+2}"/>">${page+2}</a></li>
             <li class="page-item">
-                <a class="page-link" href="#">Next</a>
+                <a class="page-link" href="<c:url value="/?page=${page+1}"/>">Next</a>
             </li>
         </ul>
     </nav>

@@ -19,8 +19,20 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public void addPost(Post post) {
-        postsRepository.save(post);
+    public List<Post> getPage(int page) {
+        int limit = 5;
+        int offset = (page - 1) * limit;
+        return postsRepository.findAllByOffsetAndLimit(offset, limit);
+    }
+
+    @Override
+    public void addPostWithImg(Post post) {
+        postsRepository.saveWithImg(post);
+    }
+
+    @Override
+    public void addPostWithoutImg(Post post) {
+        postsRepository.saveWithoutImg(post);
     }
 
     @Override

@@ -8,7 +8,11 @@ import java.util.Optional;
 public interface PostsRepository {
     List<Post> findAll();
 
-    void save(Post post);
+    List<Post> findAllByOffsetAndLimit(int offset, int limit);
+
+    void saveWithImg(Post post);
+
+    void saveWithoutImg(Post post);
 
     Optional<Post> findById(Long id);
 

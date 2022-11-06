@@ -1,4 +1,4 @@
-package ru.itis.kpfu.servlets;
+package ru.itis.kpfu.servlets.postsServlets;
 
 import ru.itis.kpfu.models.Post;
 import ru.itis.kpfu.services.PostsService;

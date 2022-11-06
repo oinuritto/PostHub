@@ -1,4 +1,4 @@
-package ru.itis.kpfu.servlets;
+package ru.itis.kpfu.servlets.userServlets;
 
 import ru.itis.kpfu.services.UsersService;
 
