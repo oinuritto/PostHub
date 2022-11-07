@@ -44,7 +44,7 @@ public class UploadServlet extends HttpServlet {
                 .imgId(null)
                 .build();
 
-        if (req.getPart("file") != null && req.getParameter("file") != null) {
+        if (req.getPart("file") != null || req.getParameter("file") != null) {
             try {
                 ImgInfo imgInfo = filesService.upload(req.getPart("file"));
                 post.setImgId(imgInfo.getId());

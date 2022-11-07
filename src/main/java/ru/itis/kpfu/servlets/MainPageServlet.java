@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+// TODO: сделать удаление постов\
+// TODO: по возможности комментарии
+
 @WebServlet("/")
 public class MainPageServlet extends HttpServlet {
     private PostsService postsService;
@@ -56,6 +59,9 @@ public class MainPageServlet extends HttpServlet {
             String title = req.getParameter("query");
             List<Post> posts = postsService.getAllPostsLikeTitle(title);
             setLikesToPosts(posts);
+            List<Long> idOfPosts = posts.stream()
+                    .map((Post::getId)).toList();
+            req.setAttribute("idOfPosts", idOfPosts);
             req.setAttribute("posts", posts);
 
         }

@@ -31,7 +31,7 @@
         <br>
     </c:forEach>
 
-    <c:if test="${not empty user}">
+    <c:if test="${not empty user && not empty idOfPosts}">
         <script>window.onload = function () {
             updateIcons(${idOfPosts}, ${user.id});
         }

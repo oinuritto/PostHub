@@ -42,6 +42,7 @@ public class SetLikeServlet extends HttpServlet {
 
             likesService.addLike(newLike);
 //            resp.sendRedirect(req.getContextPath() + "/post/likes?postId=" + postId);
+            resp.sendRedirect(req.getContextPath());
         } catch (NumberFormatException ex) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
