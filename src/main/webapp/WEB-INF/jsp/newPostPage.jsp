@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:mainLayout title="New post">
+<t:mainLayout title="New post" jsFiles="textarea.js">
     <div class="card">
         <c:if test="${not empty message}">
             <h4 class="mb-4 pb-2 pb-md-0 mb-md-5">${message}</h4>
@@ -37,8 +37,8 @@
 
                     <div class="form-outline">
                         <textarea type="text" class="form-control form-control-md" id="postText" name="postText"
-                                  placeholder="Write the text..." required></textarea>
-                        <label class="form-label" for="postTitle">Text</label>
+                                  placeholder="Write the text..." required maxlength="1600"></textarea>
+                        <label class="form-label" for="postTitle" id="postTextCounter">Text</label>
                     </div>
 
                 </div>
