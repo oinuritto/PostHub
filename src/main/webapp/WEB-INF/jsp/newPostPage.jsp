@@ -38,7 +38,7 @@
                     <div class="form-outline">
                         <textarea type="text" class="form-control form-control-md" id="postText" name="postText"
                                   placeholder="Write the text..." required maxlength="1600"></textarea>
-                        <label class="form-label" for="postTitle" id="postTextCounter">Text</label>
+                        <label class="form-label" for="postText" id="postTextCounter">Text</label>
                     </div>
 
                 </div>

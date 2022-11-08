@@ -16,6 +16,7 @@
         </c:if>
         <div class="card-body">
             <h5 class="card-title">${post.title}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Author: ${authorUsername}</h6>
             <p class="card-text">${post.text}</p>
             <a href="${pageContext.request.contextPath}" class="btn btn-primary">Back</a>
 

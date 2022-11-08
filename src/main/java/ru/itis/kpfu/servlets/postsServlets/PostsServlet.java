@@ -3,6 +3,7 @@ package ru.itis.kpfu.servlets.postsServlets;
 import ru.itis.kpfu.models.Post;
 import ru.itis.kpfu.services.LikesService;
 import ru.itis.kpfu.services.PostsService;
+import ru.itis.kpfu.services.UsersService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,12 +17,14 @@ import java.util.Collections;
 public class PostsServlet extends HttpServlet {
     private PostsService postsService;
     private LikesService likesService;
+    private UsersService usersService;
 
     @Override
     public void init() throws ServletException {
-        // init postsRepository
+        // init
         this.postsService = (PostsService) getServletContext().getAttribute("postsService");
         this.likesService = (LikesService) getServletContext().getAttribute("likesService");
+        this.usersService = (UsersService) getServletContext().getAttribute("usersService");
     }
 
     @Override
@@ -36,7 +39,11 @@ public class PostsServlet extends HttpServlet {
                 Post post = postsService.getPostById(id);
                 likesService.setLikesToPosts(Collections.singletonList(post));
 
+                String authorUsername = usersService.getRegisteredUserById(post.getUserId()).getUsername();
+
+                req.setAttribute("authorUsername", authorUsername);
                 req.setAttribute("post", post);
+
                 getServletContext().getRequestDispatcher("/WEB-INF/jsp/post.jsp").forward(req, resp);
             } catch (IllegalArgumentException ex) {
                 resp.sendRedirect(req.getContextPath());

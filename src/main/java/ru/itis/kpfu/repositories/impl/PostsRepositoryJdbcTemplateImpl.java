@@ -32,8 +32,8 @@ public class PostsRepositoryJdbcTemplateImpl implements PostsRepository {
 
     private static final RowMapper<Post> postMapper = (row, rowNumber) -> Post.builder()
             .id(row.getLong("id"))
-            .title(row.getString("title"))
-            .text(row.getString("post_text"))
+            .title(row.getString("title").trim())
+            .text(getStringWithParagraphs(row.getString("post_text")))
             .imgId(row.getLong("img_id"))
             .userId(row.getLong("user_id"))
             .build();
@@ -108,5 +108,10 @@ public class PostsRepositoryJdbcTemplateImpl implements PostsRepository {
     @Override
     public int delete(Long id) {
         return jdbcTemplate.update(SQL_DELETE_BY_ID, id);
+    }
+
+    private static String getStringWithParagraphs(String str) {
+        str = "<p>" + str.trim() + "</p>";
+        return str.replace("\n", "</p>\n<p>");
     }
 }
