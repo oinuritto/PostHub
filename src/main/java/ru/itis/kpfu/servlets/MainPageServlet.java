@@ -35,12 +35,12 @@ public class MainPageServlet extends HttpServlet {
             Integer pageNum = getPageNum(req, resp);
             if (pageNum == null) return;
 
-            // show the page
+            // show the page for the request page
             calcPage(req, resp, pageNum);
             getServletContext().getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
         }
 
-        // show the page
+        // show the page for search request
         calcPage(req, resp, 0);
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
     }
@@ -48,29 +48,23 @@ public class MainPageServlet extends HttpServlet {
     private void calcPage(HttpServletRequest req, HttpServletResponse resp, Integer pageNum) throws ServletException, IOException {
         if (pageNum != 0) {
             List<Post> posts = postsService.getPage(pageNum);
-            setLikesToPosts(posts);
-
-            List<Long> idOfPosts = posts.stream()
-                    .map((Post::getId)).toList();
-            req.setAttribute("idOfPosts", idOfPosts);
-            req.setAttribute("posts", posts);
+            setLikesAndAttributes(req, posts);
 
         } else {
             String title = req.getParameter("query");
             List<Post> posts = postsService.getAllPostsLikeTitle(title);
-            setLikesToPosts(posts);
-            List<Long> idOfPosts = posts.stream()
-                    .map((Post::getId)).toList();
-            req.setAttribute("idOfPosts", idOfPosts);
-            req.setAttribute("posts", posts);
+            setLikesAndAttributes(req, posts);
 
         }
     }
 
-    private void setLikesToPosts(List<Post> posts) {
-        for (Post post : posts) {
-            post.setLikes(likesService.getByPostId(post.getId()));
-        }
+    private void setLikesAndAttributes(HttpServletRequest req, List<Post> posts) {
+        likesService.setLikesToPosts(posts);
+
+        List<Long> idOfPosts = posts.stream()
+                .map((Post::getId)).toList();
+        req.setAttribute("idOfPosts", idOfPosts);
+        req.setAttribute("posts", posts);
     }
 
     private static Integer getPageNum(HttpServletRequest req, HttpServletResponse resp) throws IOException {

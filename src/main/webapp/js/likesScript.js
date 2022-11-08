@@ -75,6 +75,7 @@ function updateIcons(ids, userId) {
         if (sessionUserId != null) {
             updateIcon(id, userId);
         }
+        console.log(i, id, sessionUserId);
     }
     return 0;
 }
