@@ -13,4 +13,8 @@ public interface ImgInfoRepository {
     Optional<ImgInfo> findByStorageFileName(String name);
 
     Optional<ImgInfo> findById(Long id);
+
+    void delete(Long id);
+
+    void delete(String storageFileName);
 }

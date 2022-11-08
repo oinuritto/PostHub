@@ -27,7 +27,9 @@ public class PostsRepositoryJdbcTemplateImpl implements PostsRepository {
     //language=SQL
     private static final String SQL_SELECT_ALL_LIKE_TITLE = "select * from posts where title ilike '%' || ? || '%';";
 
-    //language
+    //language=SQL
+    private static final String SQL_DELETE_BY_ID = "delete from posts where id = ?;";
+
     private static final RowMapper<Post> postMapper = (row, rowNumber) -> Post.builder()
             .id(row.getLong("id"))
             .title(row.getString("title"))
@@ -101,5 +103,10 @@ public class PostsRepositoryJdbcTemplateImpl implements PostsRepository {
     @Override
     public List<Post> findAllLikeTitle(String title) {
         return jdbcTemplate.query(SQL_SELECT_ALL_LIKE_TITLE, postMapper, title);
+    }
+
+    @Override
+    public int delete(Long id) {
+        return jdbcTemplate.update(SQL_DELETE_BY_ID, id);
     }
 }

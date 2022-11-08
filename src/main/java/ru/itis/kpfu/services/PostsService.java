@@ -16,4 +16,6 @@ public interface PostsService {
     Post getPostById(Long id);
 
     List<Post> getAllPostsLikeTitle(String title);
+
+    boolean deletePost(Long id);
 }

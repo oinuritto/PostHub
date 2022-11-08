@@ -6,7 +6,6 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Data
-//@ToString
 public class Comment {
     private Long id;
     private String text;

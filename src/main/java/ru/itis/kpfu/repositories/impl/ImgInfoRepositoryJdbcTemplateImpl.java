@@ -24,6 +24,12 @@ public class ImgInfoRepositoryJdbcTemplateImpl implements ImgInfoRepository {
     //language=SQL
     private static final String SQL_SELECT_BY_ID = "select * from img_info where id = ?";
 
+    //language=SQL
+    private static final String SQL_DELETE_BY_ID = "delete from img_info where id = ?";
+
+    //language=SQL
+    private static final String SQL_DELETE_BY_STORAGE_FILE_NAME = "delete from img_info where storage_file_name = ?";
+
     private static final RowMapper<ImgInfo> fileInfoMapper = (row, rowNumber) -> ImgInfo.builder()
             .id(row.getLong("id"))
             .size(row.getLong("size"))
@@ -79,5 +85,15 @@ public class ImgInfoRepositoryJdbcTemplateImpl implements ImgInfoRepository {
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public void delete(Long id) {
+        jdbcTemplate.update(SQL_DELETE_BY_ID, id);
+    }
+
+    @Override
+    public void delete(String storageFileName) {
+        jdbcTemplate.update(SQL_DELETE_BY_STORAGE_FILE_NAME, storageFileName);
     }
 }

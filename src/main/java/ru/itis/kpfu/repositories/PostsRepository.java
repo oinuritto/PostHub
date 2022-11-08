@@ -18,9 +18,5 @@ public interface PostsRepository {
 
     List<Post> findAllLikeTitle(String title);
 
-//    void update(Post post);
-
-//    Optional<User> findPostByTitle(String title);
-
-//    void delete(Long id);
+    int delete(Long id);
 }

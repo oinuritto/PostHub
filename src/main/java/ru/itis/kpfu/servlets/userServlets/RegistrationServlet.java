@@ -2,7 +2,6 @@ package ru.itis.kpfu.servlets.userServlets;
 
 import ru.itis.kpfu.models.User;
 import ru.itis.kpfu.services.UsersService;
-import ru.itis.kpfu.validation.UserValidator;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -15,7 +14,6 @@ import java.io.IOException;
 @WebServlet("/register")
 public class RegistrationServlet extends HttpServlet {
     private UsersService usersService;
-    private UserValidator userValidator;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -23,9 +21,6 @@ public class RegistrationServlet extends HttpServlet {
 
         // init usersService
         this.usersService = (UsersService) getServletContext().getAttribute("usersService");
-
-        // init userValidator
-        this.userValidator = new UserValidator();
     }
 
     @Override
@@ -59,15 +54,12 @@ public class RegistrationServlet extends HttpServlet {
                 .password(req.getParameter("password"))
                 .build();
 
-//        // throws IllegalArgumentException if user data is invalid
-//        userValidator.validateUser(user);
-
         // if username is registered (saved at database) - throw IllegalArgumentException
         if (usersService.isRegisteredUser(user)) {
             throw new IllegalArgumentException("This username is already registered");
         }
 
-        // save user to DB
+        // sign up user
         System.out.println(user);
         usersService.signUp(user);
     }

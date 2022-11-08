@@ -2,7 +2,6 @@ package ru.itis.kpfu.servlets.adminServlets;
 
 import ru.itis.kpfu.models.User;
 import ru.itis.kpfu.services.UsersService;
-import ru.itis.kpfu.utils.UserPasswordHasher;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

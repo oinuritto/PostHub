@@ -2,15 +2,18 @@ package ru.itis.kpfu.services.impl;
 
 import ru.itis.kpfu.models.Post;
 import ru.itis.kpfu.repositories.PostsRepository;
+import ru.itis.kpfu.services.FilesService;
 import ru.itis.kpfu.services.PostsService;
 
 import java.util.List;
 
 public class PostsServiceImpl implements PostsService {
     private final PostsRepository postsRepository;
+    private final FilesService filesService;
 
-    public PostsServiceImpl(PostsRepository postsRepository) {
+    public PostsServiceImpl(PostsRepository postsRepository, FilesService filesService) {
         this.postsRepository = postsRepository;
+        this.filesService = filesService;
     }
 
     @Override
@@ -43,5 +46,14 @@ public class PostsServiceImpl implements PostsService {
     @Override
     public List<Post> getAllPostsLikeTitle(String title) {
         return postsRepository.findAllLikeTitle(title);
+    }
+
+    @Override
+    public boolean deletePost(Long id) {
+        Long imgId = getPostById(id).getImgId();
+        if (postsRepository.delete(id) == 1) {
+            return filesService.delete(imgId);
+        }
+        return false;
     }
 }

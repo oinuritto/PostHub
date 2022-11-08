@@ -6,6 +6,7 @@ import ru.itis.kpfu.services.FilesService;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -41,6 +42,27 @@ public class FilesServiceImpl implements FilesService {
         } catch (IOException ex) {
             throw new RuntimeException("Cant save file", ex);
         }
+    }
+
+    @Override
+    public boolean delete(String storageFileName) {
+        String path = storagePath + File.separator + storageFileName;
+        File file = new File(path);
+        System.out.println(path);
+        if (file.delete()) {
+            imgInfoRepository.delete(storageFileName);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean delete(Long imgId) {
+        if (imgInfoRepository.findById(imgId).isPresent()) {
+            String storageFileName = imgInfoRepository.findById(imgId).get().getStorageFileName();
+            delete(storageFileName);
+        }
+        return false;
     }
 
     @Override

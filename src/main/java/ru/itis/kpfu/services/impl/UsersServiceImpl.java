@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UsersServiceImpl implements UsersService {
     private final UsersRepository usersRepository;
-    private UserValidator userValidator;
+    private final UserValidator userValidator;
 
     public UsersServiceImpl(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;

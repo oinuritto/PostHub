@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-// TODO: сделать удаление постов\
 // TODO: по возможности комментарии
 
 @WebServlet("/")
@@ -36,16 +35,17 @@ public class MainPageServlet extends HttpServlet {
             if (pageNum == null) return;
 
             // show the page for the request page
-            calcPage(req, resp, pageNum);
+            calcPage(req, pageNum);
             getServletContext().getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
+            return;
         }
 
         // show the page for search request
-        calcPage(req, resp, 0);
+        calcPage(req, 0);
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
     }
 
-    private void calcPage(HttpServletRequest req, HttpServletResponse resp, Integer pageNum) throws ServletException, IOException {
+    private void calcPage(HttpServletRequest req, Integer pageNum) {
         if (pageNum != 0) {
             List<Post> posts = postsService.getPage(pageNum);
             setLikesAndAttributes(req, posts);

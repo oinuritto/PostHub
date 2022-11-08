@@ -1,6 +1,5 @@
 package ru.itis.kpfu.servlets.adminServlets;
 
-import ru.itis.kpfu.models.User;
 import ru.itis.kpfu.services.UsersService;
 
 import javax.servlet.ServletException;
@@ -27,15 +26,4 @@ public class AdminPanelServlet extends HttpServlet {
         req.setAttribute("usersList", usersService.getAllUsers());
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/adminPanel.jsp").forward(req, resp);
     }
-
-//    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        if (req.getParameter("isDeleteAccepted").equals("true")) {
-//            User userToDelete = usersService.getRegisteredUserByUsername(req.getParameter("deletingUser"));
-//            usersService.deleteUser(userToDelete);
-//            resp.sendRedirect(req.getContextPath() + "/adminPanel?message=Success");
-//        } else {
-//            resp.sendRedirect(req.getContextPath() + "/adminPanel?message=Something went wrong...");
-//        }
-//    }
 }
