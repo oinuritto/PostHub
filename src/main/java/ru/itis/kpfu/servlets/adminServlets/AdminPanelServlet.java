@@ -1,5 +1,6 @@
 package ru.itis.kpfu.servlets.adminServlets;
 
+import ru.itis.kpfu.models.User;
 import ru.itis.kpfu.services.UsersService;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @WebServlet("/adminPanel/*")
 public class AdminPanelServlet extends HttpServlet {
@@ -23,7 +27,10 @@ public class AdminPanelServlet extends HttpServlet {
         if (req.getParameter("message") != null)  {
             req.setAttribute("message", req.getParameter("message"));
         }
-        req.setAttribute("usersList", usersService.getAllUsers());
+
+        List<User> usersList = usersService.getAllUsers();
+        usersList.sort(Comparator.comparing(User::getRating).reversed());
+        req.setAttribute("usersList", usersList);
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/adminPanel.jsp").forward(req, resp);
     }
 }

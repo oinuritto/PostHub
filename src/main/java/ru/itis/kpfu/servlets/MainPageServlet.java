@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-// TODO: по возможности комментарии
+// TODо??: по возможности комментарии
+// TODO: рейтинг пользователей по лайкам на их статьях, сортировка пользователей или постов по рейтингу
 
 @WebServlet("/")
 public class MainPageServlet extends HttpServlet {

@@ -23,6 +23,7 @@
                             <th>Username</th>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>Rating</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -33,6 +34,7 @@
                                 <td>${usr.username}</td>
                                 <td>${usr.firstName}</td>
                                 <td>${usr.lastName}</td>
+                                <td>${usr.rating}</td>
                                 <td>
                                     <a href="${pageContext.request.contextPath}/adminPanel/userEdit?username=${usr.username}">
                                         <button class="btn btn-primary btn-sm">Edit

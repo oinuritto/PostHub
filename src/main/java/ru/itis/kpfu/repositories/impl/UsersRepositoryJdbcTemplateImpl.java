@@ -33,7 +33,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
     //language=SQL
     private static final String SQL_UPDATE_USER = "update users set first_name = ?, last_name = ?, username = ?, " +
-            "password = ? where id = ?";
+            "password = ?, rating = ? where id = ?";
 
     //language=SQL
     private static final String SQL_DELETE_USER = "delete from users where id = ?;";
@@ -46,6 +46,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
             .username(row.getString("username"))
             .password(row.getString("password"))
             .role(User.ROLE.valueOf(row.getString("role")))
+            .rating(row.getInt("rating"))
             .build();
 
     private final JdbcTemplate jdbcTemplate;
@@ -71,7 +72,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
         SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
 
         Long id = Long.parseLong(insert.withTableName("users")
-                .usingGeneratedKeyColumns("id", "role")
+                .usingGeneratedKeyColumns("id", "role", "rating")
                 .executeAndReturnKeyHolder(new MapSqlParameterSource(paramsAsMap))
                 .getKeys()
                 .get("id")
@@ -93,7 +94,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     @Override
     public void update(User user) {
         jdbcTemplate.update(SQL_UPDATE_USER, user.getFirstName(), user.getLastName(),
-                user.getUsername(), user.getPassword(), user.getId());
+                user.getUsername(), user.getPassword(), user.getRating(), user.getId());
     }
 
     @Override

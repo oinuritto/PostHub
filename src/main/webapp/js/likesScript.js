@@ -73,7 +73,7 @@ function updateIcons(ids, userId) {
     for (let i = 0; i < ids.length; i++ ) {
         let id = ids[i];
         if (sessionUserId != null) {
-            return updateIcon(id, userId);
+            updateIcon(id, userId);
         }
         // console.log(i, id, sessionUserId);
     }

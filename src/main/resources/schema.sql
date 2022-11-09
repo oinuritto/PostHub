@@ -17,6 +17,10 @@ create table users
 alter table users
     add constraint role_check check (role = 'admin' or role = 'user');
 
+alter table users
+    add column rating int default 0,
+    add constraint rating_check check ( rating >= 0 );
+
 create table img_info
 (
     id bigserial primary key,
@@ -35,7 +39,6 @@ create table posts
     foreign key (img_id) references img_info (id) on delete cascade,
     user_id   bigint,
     foreign key (user_id) references users (id) on delete cascade
---     img_storage_file_name varchar
 );
 
 create table comments

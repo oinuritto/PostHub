@@ -2,6 +2,7 @@ package ru.itis.kpfu.services.impl;
 
 import ru.itis.kpfu.models.User;
 import ru.itis.kpfu.repositories.UsersRepository;
+import ru.itis.kpfu.services.PostsService;
 import ru.itis.kpfu.services.UsersService;
 import ru.itis.kpfu.utils.UserPasswordHasher;
 import ru.itis.kpfu.validation.UserValidator;
@@ -10,10 +11,12 @@ import java.util.List;
 
 public class UsersServiceImpl implements UsersService {
     private final UsersRepository usersRepository;
+    private final PostsService postsService;
     private final UserValidator userValidator;
 
-    public UsersServiceImpl(UsersRepository usersRepository) {
+    public UsersServiceImpl(UsersRepository usersRepository, PostsService postsService) {
         this.usersRepository = usersRepository;
+        this.postsService = postsService;
         this.userValidator = new UserValidator();
     }
 
@@ -39,6 +42,13 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public void updateRatingByPostId(Long id, int rateDiff) {
+        User user = getRegisteredUserById(postsService.getPostById(id).getUserId());
+        user.setRating(user.getRating() + rateDiff);
+        update(user);
+    }
+
+    @Override
     public void update(User user, boolean mustHashPassword) throws IllegalArgumentException {
         if (mustHashPassword) {
             userValidator.validateUser(user);
@@ -51,7 +61,8 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public void update(User user) throws IllegalArgumentException {
         // if password not changing and hashed
-        // т.к. длина хэша для пароля не подходит, то берем просто копию юзера с подходящим паролем
+        // т.к. длина хэша для пароля не подходит,
+        // то берем просто копию юзера с подходящим паролем для валидации
         User userCopy = User.builder()
                 .username(user.getUsername())
                 .firstName(user.getFirstName())

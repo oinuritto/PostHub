@@ -44,10 +44,7 @@ public class AppContextListener implements ServletContextListener {
 
         hikariDataSource = new HikariDataSource(hikariConfig);
 
-        // users
-        UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(hikariDataSource);
-        UsersService usersService = new UsersServiceImpl(usersRepository);
-        sce.getServletContext().setAttribute("usersService", usersService);
+
 
         // files
         ImgInfoRepository imgInfoRepository = new ImgInfoRepositoryJdbcTemplateImpl(hikariDataSource);
@@ -59,9 +56,14 @@ public class AppContextListener implements ServletContextListener {
         PostsService postsService = new PostsServiceImpl(postsRepository, filesService);
         sce.getServletContext().setAttribute("postsService", postsService);
 
+        // users
+        UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(hikariDataSource);
+        UsersService usersService = new UsersServiceImpl(usersRepository, postsService);
+        sce.getServletContext().setAttribute("usersService", usersService);
+
         // likes
         LikesRepository likesRepository = new LikesRepositoryJdbcTemplateImpl(hikariDataSource);
-        LikesService likesService = new LikesServiceImpl(likesRepository);
+        LikesService likesService = new LikesServiceImpl(likesRepository, usersService);
         sce.getServletContext().setAttribute("likesService", likesService);
     }
 

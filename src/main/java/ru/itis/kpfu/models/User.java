@@ -13,6 +13,7 @@ public class User {
     private String username;
     private String password;
     private ROLE role;
+    private int rating;
 
     public enum ROLE {user, admin};
 }

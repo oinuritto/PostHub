@@ -11,6 +11,8 @@ public interface UsersService {
 
     boolean isRegisteredUser(User user);
 
+    void updateRatingByPostId(Long id, int rateDiff);
+
     void update(User user, boolean mustHashPassword);
 
     void update(User user);

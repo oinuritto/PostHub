@@ -1,10 +1,12 @@
 package ru.itis.kpfu.services.impl;
 
 import ru.itis.kpfu.models.Post;
+import ru.itis.kpfu.models.User;
 import ru.itis.kpfu.repositories.PostsRepository;
 import ru.itis.kpfu.services.FilesService;
 import ru.itis.kpfu.services.PostsService;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class PostsServiceImpl implements PostsService {
