@@ -10,6 +10,8 @@ public interface PostsRepository {
 
     List<Post> findAllByOffsetAndLimit(int offset, int limit);
 
+    List<Post> findAllByOffsetAndLimitSortedByLikesCount(int offset, int limit);
+
     void saveWithImg(Post post);
 
     void saveWithoutImg(Post post);

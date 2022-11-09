@@ -1,12 +1,10 @@
 package ru.itis.kpfu.services.impl;
 
 import ru.itis.kpfu.models.Post;
-import ru.itis.kpfu.models.User;
 import ru.itis.kpfu.repositories.PostsRepository;
 import ru.itis.kpfu.services.FilesService;
 import ru.itis.kpfu.services.PostsService;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class PostsServiceImpl implements PostsService {
@@ -23,10 +21,29 @@ public class PostsServiceImpl implements PostsService {
         return postsRepository.findAll();
     }
 
+//    @Override
+//    public List<Post> getAllPosts(boolean sortedByLikes) {
+//        List<Post> posts = postsRepository.findAll();
+//        if (sortedByLikes) {
+//            Collections.sort(posts, (p1, p2) -> p2.getLikes().size() - p1.getLikes().size());
+//        }
+//        return posts;
+//    }
+
     @Override
     public List<Post> getPage(int page) {
         int limit = 5;
         int offset = (page - 1) * limit;
+        return postsRepository.findAllByOffsetAndLimit(offset, limit);
+    }
+
+    @Override
+    public List<Post> getPage(int page, boolean sortedByLikesCount) {
+        int limit = 5;
+        int offset = (page - 1) * limit;
+        if (sortedByLikesCount) {
+            return postsRepository.findAllByOffsetAndLimitSortedByLikesCount(offset, limit);
+        }
         return postsRepository.findAllByOffsetAndLimit(offset, limit);
     }
 

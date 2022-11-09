@@ -4,6 +4,29 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <t:mainLayout title="Post Hub" jsFiles="likesScript.js">
+    <div class="dropdown mb-2 d-flex justify-content-center">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+            Сортировка
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li>
+                <form action="<c:url value="?page=1"/>" method="post">
+                    <input type="hidden" name="isSorted" value="false">
+                    <input type="submit" class="dropdown-item" value="По умолчанию"
+                           <c:if test="${empty isSorted || !isSorted}">disabled</c:if> />
+                </form>
+            </li>
+            <li>
+                <form action="<c:url value="?page=1"/>" method="post">
+                    <input type="hidden" name="isSorted" value="true">
+                    <input type="submit" class="dropdown-item" value="По популярности"
+                           <c:if test="${not empty isSorted && isSorted}">disabled</c:if> />
+                </form>
+            </li>
+        </ul>
+    </div>
+
     <c:forEach var="post" items="${posts}">
 
         <%--    one card--%>

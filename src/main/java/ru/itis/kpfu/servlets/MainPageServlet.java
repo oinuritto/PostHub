@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -46,9 +47,25 @@ public class MainPageServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession httpSession = req.getSession();
+        if (req.getParameter("isSorted").equals("true")) {
+            httpSession.setAttribute("isSorted", true);
+        } else {
+            httpSession.setAttribute("isSorted", false);
+        }
+        resp.sendRedirect(req.getContextPath() + "?page=1");
+    }
+
     private void calcPage(HttpServletRequest req, Integer pageNum) {
         if (pageNum != 0) {
-            List<Post> posts = postsService.getPage(pageNum);
+            List<Post> posts;
+            if (req.getSession().getAttribute("isSorted") != null && (Boolean) req.getSession().getAttribute("isSorted")) {
+                posts = postsService.getPage(pageNum, true);
+            } else {
+                posts = postsService.getPage(pageNum);
+            }
             setLikesAndAttributes(req, posts);
 
         } else {

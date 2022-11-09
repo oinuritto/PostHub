@@ -30,6 +30,17 @@ public class PostsRepositoryJdbcTemplateImpl implements PostsRepository {
     //language=SQL
     private static final String SQL_DELETE_BY_ID = "delete from posts where id = ?;";
 
+    //language=SQL
+    private static final String SQL_SELECT_ALL_BY_OFFSET_AND_LIMIT_SORTED_BY_LIKES = "with _t1 as (select p.id, p.title, " +
+            "p.post_text, p.img_id, p.user_id, count(l.user_id) as likes_count from posts as p, likes as l " +
+            "where p.id = l.post_id group by p.id, p.title, p.post_text, p.img_id, p.user_id " +
+            "UNION " +
+            "(select p.id, p.title, p.post_text, p.img_id, p.user_id, 0 as likes_count from posts as p, likes as l " +
+            "where p.id != l.post_id group by p.id, p.title, p.post_text, p.img_id, p.user_id " +
+            "EXCEPT select p.id, p.title, p.post_text, p.img_id, p.user_id, 0 as likes_count from posts as p, likes as l " +
+            "where p.id = l.post_id group by p.id, p.title, p.post_text, p.img_id, p.user_id)) " +
+            "select id, title, post_text, img_id, user_id from _t1 order by _t1.likes_count desc offset ? limit ?;";
+
     private static final RowMapper<Post> postMapper = (row, rowNumber) -> Post.builder()
             .id(row.getLong("id"))
             .title(row.getString("title").trim())
@@ -53,6 +64,11 @@ public class PostsRepositoryJdbcTemplateImpl implements PostsRepository {
     @Override
     public List<Post> findAllByOffsetAndLimit(int offset, int limit) {
         return jdbcTemplate.query(SQL_SELECT_ALL_BY_OFFSET_AND_LIMIT, postMapper, offset, limit);
+    }
+
+    @Override
+    public List<Post> findAllByOffsetAndLimitSortedByLikesCount(int offset, int limit) {
+        return jdbcTemplate.query(SQL_SELECT_ALL_BY_OFFSET_AND_LIMIT_SORTED_BY_LIKES, postMapper, offset, limit);
     }
 
     @Override
