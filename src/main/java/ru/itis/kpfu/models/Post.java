@@ -14,6 +14,5 @@ public class Post {
     private String text;
     private Long imgId;
     private Long userId;
-    private List<Comment> comments;
     private List<Like> likes;
 }

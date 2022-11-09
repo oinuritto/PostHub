@@ -13,13 +13,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-// TODо??: по возможности комментарии
-// TODO: рейтинг пользователей по лайкам на их статьях, сортировка пользователей или постов по рейтингу
-
 @WebServlet("/")
 public class MainPageServlet extends HttpServlet {
     private PostsService postsService;
     private LikesService likesService;
+    private final int postsInPage = 5;
 
     @Override
     public void init() throws ServletException {
@@ -31,6 +29,8 @@ public class MainPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        setPagesCountToRequest(req);
+
         if (req.getParameter("query") == null || req.getParameter("query").equals("")) {
             // get the page Number
             Integer pageNum = getPageNum(req, resp);
@@ -62,9 +62,9 @@ public class MainPageServlet extends HttpServlet {
         if (pageNum != 0) {
             List<Post> posts;
             if (req.getSession().getAttribute("isSorted") != null && (Boolean) req.getSession().getAttribute("isSorted")) {
-                posts = postsService.getPage(pageNum, true);
+                posts = postsService.getPage(pageNum, postsInPage, true);
             } else {
-                posts = postsService.getPage(pageNum);
+                posts = postsService.getPage(pageNum, postsInPage);
             }
             setLikesAndAttributes(req, posts);
 
@@ -100,5 +100,15 @@ public class MainPageServlet extends HttpServlet {
         }
         req.setAttribute("page", pageNum);
         return pageNum;
+    }
+
+    private void setPagesCountToRequest(HttpServletRequest req) {
+        int postsCount = postsService.getAllPosts().size();
+        int pagesCount = postsCount / postsInPage;
+        if (postsCount % postsInPage == 0) {
+            req.setAttribute("pagesCount", pagesCount);
+        } else {
+            req.setAttribute("pagesCount", pagesCount + 1);
+        }
     }
 }
