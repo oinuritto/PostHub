@@ -38,6 +38,7 @@
         </script>
     </c:if>
 
+    <c:if test="${not empty page}">
     <%-- pages choose   --%>
     <nav aria-label="..." class="d-flex justify-content-center align-self-end">
         <ul class="pagination">
@@ -66,4 +67,5 @@
             </li>
         </ul>
     </nav>
+    </c:if>
 </t:mainLayout>

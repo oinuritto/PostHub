@@ -73,9 +73,9 @@ function updateIcons(ids, userId) {
     for (let i = 0; i < ids.length; i++ ) {
         let id = ids[i];
         if (sessionUserId != null) {
-            updateIcon(id, userId);
+            return updateIcon(id, userId);
         }
-        console.log(i, id, sessionUserId);
+        // console.log(i, id, sessionUserId);
     }
     return 0;
 }
@@ -83,7 +83,7 @@ function updateIcons(ids, userId) {
 
 function getJSONLength(response) {
     var count = 0;
-    for (var k in response) {
+    for (let k in response) {
         count++;
     }
     return count;
