@@ -38,6 +38,7 @@
     </div>
     <br>
 
+    <%-- run js fuction there, because need to give arguments from jsp --%>
     <c:if test="${not empty user}">
         <script>window.onload = function () {
             updateIcons(${[post.id]}, ${user.id});

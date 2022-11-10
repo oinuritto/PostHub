@@ -26,7 +26,7 @@ public class UserEditByAdminServlet extends HttpServlet {
         try {
             editingUser = usersService.getRegisteredUserByUsername(req.getParameter("username"));
             req.setAttribute("editingUser", editingUser);
-            getServletContext().getRequestDispatcher("/WEB-INF/jsp/userEditByAdmin.jsp").forward(req, resp);
+            getServletContext().getRequestDispatcher("/WEB-INF/jsp/admin/userEditByAdmin.jsp").forward(req, resp);
         } catch (IllegalArgumentException ex) {
             resp.sendRedirect(req.getContextPath() + "/adminPanel?message=" + ex.getMessage());
         }

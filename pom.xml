@@ -91,6 +91,5 @@
       </plugin>
     </plugins>
 
-    <finalName>PostHub</finalName>
   </build>
 </project>

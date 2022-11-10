@@ -31,6 +31,6 @@ public class AdminPanelServlet extends HttpServlet {
         List<User> usersList = usersService.getAllUsers();
         usersList.sort(Comparator.comparing(User::getRating).reversed());
         req.setAttribute("usersList", usersList);
-        getServletContext().getRequestDispatcher("/WEB-INF/jsp/adminPanel.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/jsp/admin/adminPanel.jsp").forward(req, resp);
     }
 }

@@ -9,11 +9,14 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <%--            DONE: сделать поиск --%>
       <form class="d-flex" method="get" action="${pageContext.request.contextPath}">
-        <input id="search-input" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
+        <input id="search-input" class="form-control mr-sm-2" type="search" placeholder="Search posts" aria-label="Search" name="query">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
 
       <ul class="navbar-nav ms-auto ">
+        <li class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" href="<c:url value="/users"/>">Users</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link mx-2 active" aria-current="page" href="<c:url value="/"/>">Home</a>
         </li>
