@@ -3,29 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:mainLayout title="Users">
-  <%-- sorting choose dropdown menu --%>
-  <div class="dropdown mb-2 d-flex justify-content-center">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
-            data-bs-toggle="dropdown" aria-expanded="false">
-      Сортировка
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li>
-        <form method="post">
-          <input type="hidden" name="isSorted" value="false">
-          <input type="submit" class="dropdown-item" value="По умолчанию"
-                 <c:if test="${empty isSorted || !isSorted}">disabled</c:if> />
-        </form>
-      </li>
-      <li>
-        <form method="post">
-          <input type="hidden" name="isSorted" value="true">
-          <input type="submit" class="dropdown-item" value="По рейтингу"
-                 <c:if test="${not empty isSorted && isSorted}">disabled</c:if> />
-        </form>
-      </li>
-    </ul>
-  </div>
+  <t:sortingChoose isSortedVariable="${isSorted}"/>
 
   <div class="row justify-content-center align-items-center">
     <div class="col-12 col-lg-9 col-xl-7">
