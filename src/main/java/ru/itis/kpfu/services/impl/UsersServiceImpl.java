@@ -91,6 +91,14 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public List<User> getAllUsers(boolean sortedByRatingDesc) {
+        if (sortedByRatingDesc) {
+            return usersRepository.findAllOrderByRatingDesc();
+        }
+        return getAllUsers();
+    }
+
+    @Override
     public List<User> getAllUsersLikeUsername(String username) {
         return usersRepository.findAllLikeUsername(username);
     }

@@ -22,6 +22,11 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
+    public List<Post> getAllPostByUserId(Long id) {
+        return  postsRepository.findAllByUserId(id);
+    }
+
+    @Override
     public List<Post> getPage(int page, int postsInPage) {
         int limit = postsInPage;
         int offset = (page - 1) * limit;
@@ -29,11 +34,11 @@ public class PostsServiceImpl implements PostsService {
     }
 
     @Override
-    public List<Post> getPage(int page, int postsInPage, boolean sortedByLikesCount) {
+    public List<Post> getPage(int page, int postsInPage, boolean sortedByLikesCountDesc) {
         int limit = postsInPage;
         int offset = (page - 1) * limit;
-        if (sortedByLikesCount) {
-            return postsRepository.findAllByOffsetAndLimitSortedByLikesCount(offset, limit);
+        if (sortedByLikesCountDesc) {
+            return postsRepository.findAllByOffsetAndLimitSortedByLikesCountDesc(offset, limit);
         }
         return postsRepository.findAllByOffsetAndLimit(offset, limit);
     }

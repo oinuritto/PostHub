@@ -50,7 +50,7 @@ public class MainPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();
-        if (req.getParameter("isSorted").equals("true")) {
+        if (req.getParameter("isSorted") != null && req.getParameter("isSorted").equals("true")) {
             httpSession.setAttribute("isSorted", true);
         } else {
             httpSession.setAttribute("isSorted", false);

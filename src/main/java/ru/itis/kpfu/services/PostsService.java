@@ -7,9 +7,11 @@ import java.util.List;
 public interface PostsService {
     List<Post> getAllPosts();
 
+    List<Post> getAllPostByUserId(Long id);
+
     List<Post> getPage(int page, int postsInPage);
 
-    List<Post> getPage(int page, int postsInPage, boolean sortedByLikesCount);
+    List<Post> getPage(int page, int postsInPage, boolean sortedByLikesCountDesc);
 
     void addPostWithImg(Post post);
 

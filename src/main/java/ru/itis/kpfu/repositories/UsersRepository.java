@@ -8,6 +8,8 @@ import java.util.Optional;
 public interface UsersRepository {
     List<User> findAll();
 
+    List<User> findAllOrderByRatingDesc();
+
     void save(User user);
 
     Optional<User> findById(Long id);

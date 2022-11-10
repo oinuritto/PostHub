@@ -9,6 +9,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/newPostPage.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/userEditByAdmin.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/usersPage.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp" />
       </map>
     </option>
   </component>

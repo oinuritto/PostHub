@@ -32,6 +32,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkAuthorized">
               <li><a class="dropdown-item" href="<c:url value="/profile"/>">Profile</a></li>
+              <li><a class="dropdown-item" href="<c:url value="/users/posts?id=${user.id}"/>">My posts</a></li>
               <li><a class="dropdown-item" href="<c:url value="/newpost"/>">New post</a></li>
               <li><a class="dropdown-item" href="<c:url value="/logout"/>">Log out</a></li>
             </ul>
