@@ -34,6 +34,3 @@ function fillTable(users) {
             "                                </a>"
     }
 }
-
-// let inputField = document.getElementById("usersSearch");
-// inputField.onkeyup(searchUsers(document.getElementById("usersSearch").value));

@@ -20,6 +20,9 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     private static final String SQL_SELECT_ALL_USERS = "select * from users;";
 
     //language=SQL
+    private static final String SQL_SELECT_ALL_USERS_ORDER_BY_RATING_DESC = "select * from users order by rating desc";
+
+    //language=SQL
     private static final String SQL_SELECT_BY_ID = "select * from users where id = ?";
 
     //language=SQL
@@ -58,6 +61,11 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     @Override
     public List<User> findAll() {
         return jdbcTemplate.query(SQL_SELECT_ALL_USERS, userMapper);
+    }
+
+    @Override
+    public List<User> findAllOrderByRatingDesc() {
+        return jdbcTemplate.query(SQL_SELECT_ALL_USERS_ORDER_BY_RATING_DESC, userMapper);
     }
 
     @Override

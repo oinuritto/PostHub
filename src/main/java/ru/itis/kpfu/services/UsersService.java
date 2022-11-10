@@ -23,6 +23,8 @@ public interface UsersService {
 
     List<User> getAllUsers();
 
+    List<User> getAllUsers(boolean sortedByRatingDesc);
+
     List<User> getAllUsersLikeUsername(String username);
 
     void deleteUser(User user);
