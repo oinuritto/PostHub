@@ -88,3 +88,11 @@ function getJSONLength(response) {
     }
     return count;
 }
+
+
+// throws exceptions in console
+// window.onload = function () {
+//     let ids = document.getElementById("idOfPosts").value;
+//     let userId = document.getElementById("userId").value;
+//     updateIcons(ids, userId);
+// }

@@ -15,7 +15,7 @@
                     </div>
 
                     <input type="text" id="usersSearch" class="form-control form-control-md mb-2"
-                           placeholder="Search user" onkeyup="searchUsers(document.getElementById('usersSearch').value)">
+                           placeholder="Search user">
                     <table class="table table-hover">
                         <thead class="table-primary">
                         <tr>

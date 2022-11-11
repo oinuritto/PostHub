@@ -34,3 +34,7 @@ function fillTable(users) {
             "                                </a>"
     }
 }
+
+document.getElementById("usersSearch").addEventListener("keyup", function () {
+    searchUsers(document.getElementById('usersSearch').value);
+})

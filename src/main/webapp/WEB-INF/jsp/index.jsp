@@ -22,25 +22,26 @@
                         class="btn btn-link btn-floating btn-lg"
                         role="button"
                         data-mdb-ripple-color="dark" onclick="workWithLike(${post.id})">
+                    <input type="hidden" id="postId" value="postId">
                     <i class="bi bi-hand-thumbs-up" id="likedCount-post-${post.id}">${fn:length(post.likes)}</i>
                     <input type="hidden" value="nonLiked" id="ifLiked-post-${post.id}">
                 </p>
             </div>
         </div>
-        <%--  not work      --%>
-        <%--        <c:if test="${not empty user}">--%>
-        <%--            <input type="hidden" onload="updateIcon(${post.id}, ${user.id})">--%>
-        <%--        </c:if>--%>
         <br>
     </c:forEach>
 
 
-    <%-- run js fuction there, because need to give arguments from jsp --%>
+    <%-- run js function there, because need to give arguments from jsp --%>
     <c:if test="${not empty user && not empty idOfPosts}">
         <script>window.onload = function () {
             updateIcons(${idOfPosts}, ${user.id});
         }
         </script>
+
+<%--        throws exceptions in console--%>
+<%--        <input type="hidden" id="userId" value="${user.id}">--%>
+<%--        <input type="hidden" id="idOfPosts" value="${idOfPosts}">--%>
     </c:if>
 
     <t:postsPaging page="${page}" pagesCount="${pagesCount}"/>
